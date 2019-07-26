@@ -20,6 +20,7 @@ class DockingStation
 
   def dock(bike)
     fail 'Docking station full' if full?
+    fail 'Bike is broken' if bike.broken
     # Use an instance variable to store the bike
     # in the 'state' of this instance
     @bikes << bike
@@ -37,3 +38,4 @@ class DockingStation
   end
 
 end
+
