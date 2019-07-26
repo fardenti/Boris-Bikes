@@ -1,12 +1,16 @@
 require_relative 'bike'
 # in docking_station.rb
 
-DEFAULT_CAPACITY = 20
+class DockingStation
 
-class DockingStation(capacity = DEFAULT_CAPACITY)
-  def initialize
+  DEFAULT_CAPACITY = 20
+
+  attr_reader :capacity
+
+  def initialize(capacity = DEFAULT_CAPACITY)
   #array stored as an instance variable:
     @bikes = []
+    @capacity = capacity
   end
 
   def release_bike
@@ -25,7 +29,7 @@ class DockingStation(capacity = DEFAULT_CAPACITY)
   private
 
   def full?
-    @bikes.count >= DEFAULT_CAPACITY
+    @bikes.count >= capacity
   end
 
   def empty?
