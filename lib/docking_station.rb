@@ -1,27 +1,35 @@
 require_relative 'bike'
 # in docking_station.rb
-class DockingStation
+
+DEFAULT_CAPACITY = 20
+
+class DockingStation(capacity = DEFAULT_CAPACITY)
   def initialize
+  #array stored as an instance variable:
     @bikes = []
   end
 
   def release_bike
-    fail 'No bikes available' if @bikes.empty?
+    fail 'No bikes available' if empty?
     @bikes.pop
   end
 
   def dock(bike)
-    fail 'Docking station full' if @bikes.count >= 20
- # Use an instance variable to store the bike
+    fail 'Docking station full' if full?
+    # Use an instance variable to store the bike
     # in the 'state' of this instance
     @bikes << bike
   end
 
-  #def bike
-   # @bike
-  #end
-  # this will essentially write the method above
-  # on any instances of this class
-  attr_reader :bike
+  #using private keyword to ensure these methods cannot be called from 'outside' instances of the DockingStation class.
+  private
+
+  def full?
+    @bikes.count >= DEFAULT_CAPACITY
+  end
+
+  def empty?
+    @bikes.empty?
+  end
 
 end
